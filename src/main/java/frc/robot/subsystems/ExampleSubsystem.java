@@ -32,16 +32,18 @@ public class ExampleSubsystem extends SubsystemBase {
 
   public void Sol_toggle () {
 
-    if (exampleSolenoidPH.get() == DoubleSolenoid.Value.kForward)
+    if (exampleSolenoidPH.get() == DoubleSolenoid.Value.kReverse)
     {
-      exampleSolenoidPH.set(DoubleSolenoid.Value.kReverse);
-    } else{
       exampleSolenoidPH.set(DoubleSolenoid.Value.kForward);
+    } else {
+      exampleSolenoidPH.set(DoubleSolenoid.Value.kReverse);
     }
+      
+      
   }
 
   public void Sol_init () {
-    exampleSolenoidPH.set(DoubleSolenoid.Value.kForward);
+    exampleSolenoidPH.set(DoubleSolenoid.Value.kReverse);
   }
 
 }
