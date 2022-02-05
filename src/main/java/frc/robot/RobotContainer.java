@@ -31,9 +31,17 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // Configure the button bindings
+    // Define Robot boot state
+    initRobot();
+        // Configure the button bindings
     configureButtonBindings();
+
   }
+
+private void initRobot()
+{
+  m_exampleSubsystem.Sol_init();
+}
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -43,8 +51,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-  Xbox1_A.whenPressed(() ->  m_exampleSubsystem.Sol_forward());
-  Xbox1_B.whenPressed(() ->  m_exampleSubsystem.Sol_reverse());
+  Xbox1_A.whenPressed(() ->  m_exampleSubsystem.Sol_toggle());
+  //Xbox1_B.whenPressed(() ->  m_exampleSubsystem.Sol_reverse());
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

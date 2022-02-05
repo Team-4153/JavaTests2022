@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Compressor;
+//import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
@@ -15,9 +15,10 @@ public class ExampleSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public ExampleSubsystem() {}
 
-  public final Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
-  DoubleSolenoid exampleSolenoidPH = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 1, 2);
+  //public final Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
+  private DoubleSolenoid exampleSolenoidPH = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 1, 2);
   
+
 
   @Override
   public void periodic() {
@@ -29,12 +30,18 @@ public class ExampleSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run during simulation
   }
 
-  public void Sol_forward () {
-    exampleSolenoidPH.set(DoubleSolenoid.Value.kForward);
+  public void Sol_toggle () {
+
+    if (exampleSolenoidPH.get() == DoubleSolenoid.Value.kForward)
+    {
+      exampleSolenoidPH.set(DoubleSolenoid.Value.kReverse);
+    } else{
+      exampleSolenoidPH.set(DoubleSolenoid.Value.kForward);
+    }
   }
 
-  public void Sol_reverse () {
-    exampleSolenoidPH.set(DoubleSolenoid.Value.kReverse);
+  public void Sol_init () {
+    exampleSolenoidPH.set(DoubleSolenoid.Value.kForward);
   }
 
 }
