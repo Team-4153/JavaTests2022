@@ -6,8 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.IntakeCommand;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -22,12 +22,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   private final XboxController m_xbox = new XboxController(0);
   private final JoystickButton Xbox1_A = new JoystickButton(m_xbox, XboxController.Button.kA.value);
-  private final JoystickButton Xbox1_B = new JoystickButton(m_xbox, XboxController.Button.kB.value);
+  private final JoystickButton Xbox1_X = new JoystickButton(m_xbox, XboxController.Button.kX.value);
 //extra comment
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
-    private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+    private final IntakeCommand m_autoCommand = new IntakeCommand(m_IntakeSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -40,7 +40,8 @@ public class RobotContainer {
 
 private void initRobot()
 {
-  m_exampleSubsystem.Sol_init();
+  m_IntakeSubsystem.Sol_init();
+  m_IntakeSubsystem.Motor_init();
 }
 
   /**
@@ -51,8 +52,10 @@ private void initRobot()
    */
   private void configureButtonBindings() {
 
-  Xbox1_A.whenPressed(() ->  m_exampleSubsystem.Sol_toggle());
-  //Xbox1_B.whenPressed(() ->  m_exampleSubsystem.Sol_reverse());
+  Xbox1_A.whenPressed(() ->  m_IntakeSubsystem.Sol_toggle());
+  Xbox1_X.whileHeld(() ->  m_IntakeSubsystem.Motor_Start());
+  Xbox1_X.whenReleased(() ->  m_IntakeSubsystem.Motor_Stop());
+  //Xbox1_B.whenPressed(() ->  m_IntakeSubsystem.Sol_reverse());
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -60,7 +63,7 @@ private void initRobot()
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
+    // An IntakeCommand will run in autonomous
     return m_autoCommand;
   }
 }
