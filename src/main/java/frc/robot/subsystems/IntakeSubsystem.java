@@ -22,7 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   //public final Compressor phCompressor = new Compressor(1, PneumaticsModuleType.REVPH);
   private DoubleSolenoid exampleSolenoidPH = new DoubleSolenoid(1, PneumaticsModuleType.REVPH, 1, 2);
-  private PWMVictorSPX victor = new PWMVictorSPX(0);
+  private PWMVictorSPX victor = new PWMVictorSPX(3);
 
 
   @Override
